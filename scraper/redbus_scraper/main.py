@@ -64,7 +64,7 @@ if __name__ == "__main__":
     try:
         log("🟢 Logging iniciado correctamente.")
         driver = setup_driver()
-        wait = WebDriverWait(driver, 15)
+        wait = WebDriverWait(driver, 20)
 
         # 1. Ir a RedBus
         log("🌐 Abriendo redbus.pe...")
@@ -73,42 +73,34 @@ if __name__ == "__main__":
         save_screenshot(driver, "01_homepage.png")
 
         # 2. ORIGEN: Lima (Todos)
-        log("⌨️ Esperando campo de entrada origen...")
+        log("⌨️ Ingresando origen: Lima...")
         input_origen = wait.until(EC.presence_of_element_located((By.ID, "src")))
-        input_origen.click()
+        input_origen.clear()
         input_origen.send_keys("Lima")
-        time.sleep(1.5)
         save_screenshot(driver, "02_input_origen_lima.png")
-
-        log("🔍 Buscando sugerencias para 'Lima (Todos)'...")
-        time.sleep(1)
-        save_screenshot(driver, "debug_sugerencias_origen.png")
-
+        
+        log("🔍 Esperando sugerencias para 'Lima (Todos)'...")
         sugerencias_origen = wait.until(EC.presence_of_all_elements_located(
-            (By.XPATH, '//*[contains(text(), "Lima (Todos)")]')))
-
-        seleccionado = False
+            (By.XPATH, '//li[contains(normalize-space(), "Lima (Todos)")]')
+        ))
+        
         for opcion in sugerencias_origen:
             log(f"🔸 Opción encontrada: {opcion.text}")
             if "lima (todos)" in opcion.text.lower():
                 log(f"✅ Seleccionando opción: {opcion.text}")
                 opcion.click()
-                seleccionado = True
                 break
-
-        if not seleccionado:
-            raise Exception("❌ No se encontró la opción 'Lima (Todos)' entre las sugerencias.")
-
         save_screenshot(driver, "02_origin_selected_lima_todos.png")
 
         # 3. DESTINO: Trujillo (Todos)
-        log("🧭 Seleccionando destino: Trujillo...")
+        log("🧭 Ingresando destino: Trujillo...")
         input_destino = wait.until(EC.presence_of_element_located((By.ID, "dest")))
-        input_destino.click()
+        input_destino.clear()
         input_destino.send_keys("Trujillo")
-        time.sleep(1)
+
         sugerencias_destino = wait.until(EC.presence_of_all_elements_located(
-            (By.XPATH, '//*[contains(text(), "Trujillo (Todos)")]')))
+            (By.XPATH, '//li[contains(normalize-space(), "Trujillo (Todos)")]')
+        ))
         for opcion in sugerencias_destino:
             if "trujillo (todos)" in opcion.text.lower():
                 log(f"✅ Seleccionando opción: {opcion.text}")
@@ -129,7 +121,7 @@ if __name__ == "__main__":
         log("🔍 Haciendo clic en BUSCAR...")
         boton_buscar = wait.until(EC.element_to_be_clickable((By.ID, "search_button")))
         boton_buscar.click()
-        time.sleep(6)
+        time.sleep(5)
         save_screenshot(driver, "06_results_loaded.png")
 
         log("🎯 Fase 1 completada correctamente.")
@@ -147,4 +139,3 @@ if __name__ == "__main__":
                 log(f"⚠️ Error al cerrar el driver: {close_err}")
         else:
             log("⚠️ Driver no se inició correctamente.")
-

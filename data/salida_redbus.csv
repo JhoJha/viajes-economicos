@@ -1,0 +1,52 @@
+empresa,hora_salida,hora_llegada,precio_min,precio_max,asientos_disponibles,tipo_bus,duracion_min,punto_partida,punto_llegada
+Linea,2025-06-15 20:30,2025-06-16 07:30,75.0,100.0,21,VIP/ESPECIAL,660,La Victoria,America Sur
+Linea,2025-06-15 21:00,2025-06-16 07:00,65.0,95.0,38,VIP/ESPECIAL,600,Terminal Terrestre Plaza Norte,Terrapuerto Trujillo
+America Express,2025-06-15 22:15,2025-06-16 08:15,80.0,90.0,7,PREMIUM,600,La Victoria,Av La Marina
+ITTSABUS,2025-06-15 21:00,2025-06-16 06:00,75.0,100.0,32,SEMI CAMA,540,Terminal Terrestre Plaza Norte,Av Juan Pablo
+Turismo Dias,2025-06-15 21:00,2025-06-16 07:00,80.0,80.0,7,Kuntur Wasi Oro,600,La Victoria,Av Pablo Casals
+Transportes Via,2025-06-15 21:00,2025-06-16 08:00,65.0,85.0,37,SILVER,660,La Victoria,Terrapuerto Moche
+ITTSABUS,2025-06-15 21:15,2025-06-16 07:15,75.0,100.0,10,Mixto 38,600,La Victoria,Av Juan Pablo
+ITTSABUS,2025-06-15 23:15,2025-06-16 09:15,75.0,100.0,44,SEMI CAMA,600,La Victoria,Av Juan Pablo
+America Express,2025-06-15 20:45,2025-06-16 06:45,80.0,90.0,14,Premium Plus,600,La Victoria,Av La Marina
+Linea,2025-06-15 22:00,2025-06-16 08:00,65.0,95.0,45,VIP/ESPECIAL,600,Terminal Terrestre Plaza Norte,Terrapuerto Trujillo
+ITTSABUS,2025-06-15 12:00,2025-06-15 22:00,75.0,75.0,28,SEMI CAMA,600,La Victoria,Av Juan Pablo
+America Express,2025-06-15 12:30,2025-06-15 22:30,45.0,60.0,48,BUS CAMA,600,La Victoria,Av La Marina
+Linea,2025-06-15 22:30,2025-06-16 09:30,75.0,110.0,48,VIP/ESPECIAL,660,La Victoria,America Sur
+ITTSABUS,2025-06-15 22:45,2025-06-16 08:45,75.0,100.0,43,SEMI CAMA,600,La Victoria,Av Juan Pablo
+Linea,2025-06-15 21:30,2025-06-16 08:30,75.0,110.0,38,VIP/ESPECIAL,660,La Victoria,America Sur
+ITTSABUS,2025-06-15 21:30,2025-06-16 06:30,140.0,140.0,9,Super Cama,540,Terminal Terrestre Plaza Norte,Av Juan Pablo
+Turismo Cautivo,2025-06-15 19:05,2025-06-16 04:05,80.0,80.0,32,BUS CAMA,540,La Victoria,Terrapuerto Trujillo
+Allinbus,2025-06-15 20:01,2025-06-16 07:00,75.0,95.0,50,BUS CAMA,659,La Victoria,Terrapuerto Trujillo
+Transportes Via,2025-06-15 22:00,2025-06-16 09:00,125.0,125.0,13,PLATINUM,660,La Victoria,Av Del Ejercito
+ITTSABUS,2025-06-15 21:00,2025-06-16 07:00,100.0,110.0,12,SOFA CAMA,600,La Victoria,Av Juan Pablo
+ITTSABUS,2025-06-15 13:00,2025-06-15 22:00,75.0,110.0,35,SEMI CAMA,540,Terminal Terrestre Plaza Norte,Av Juan Pablo
+ITTSABUS,2025-06-15 22:00,2025-06-16 08:00,100.0,140.0,6,Super Cama,600,La Victoria,Av Juan Pablo
+Linea,2025-06-15 22:30,2025-06-16 06:35,75.0,110.0,38,VIP/ESPECIAL,485,Terminal Terrestre Plaza Norte,America Sur
+America Express,2025-06-15 07:00,2025-06-15 17:00,50.0,60.0,25,PREMIUM,600,La Victoria,Av La Marina
+Turismo Dias,2025-06-15 21:45,2025-06-16 07:45,80.0,80.0,13,Kuntur Wasi Oro,600,Terminal Terrestre Plaza Norte,Av Pablo Casals
+ITTSABUS,2025-06-15 23:00,2025-06-16 09:00,100.0,150.0,13,Super Cama,600,La Victoria,Av Juan Pablo
+Transportes Via,2025-06-15 11:00,2025-06-15 22:00,75.0,95.0,35,GOLD,660,La Victoria,Av Del Ejercito
+Linea,2025-06-15 21:00,2025-06-16 08:00,100.0,100.0,5,VIP/SUPER VIP,660,La Victoria,America Sur
+Linea,2025-06-15 22:50,2025-06-16 07:05,95.0,105.0,20,DORADO,495,Terminal Terrestre Plaza Norte,America Sur
+Transportes Via,2025-06-15 21:30,2025-06-16 08:30,95.0,125.0,21,GOLD,660,La Victoria,Av Del Ejercito
+Linea,2025-06-15 22:00,2025-06-16 09:00,95.0,105.0,20,DORADO,660,La Victoria,America Sur
+Latham,2025-06-15 21:20,2025-06-16 07:10,56.0,90.0,61,Estandar,590,Terminal Terrestre Plaza Norte,Terrapuerto Moche
+America Express,2025-06-15 21:45,2025-06-16 07:45,70.0,70.0,41,SEMI CAMA,600,La Victoria,Av La Marina
+ITTSABUS,2025-06-15 21:45,2025-06-16 06:45,100.0,100.0,8,SOFA CAMA,540,Terminal Terrestre Plaza Norte,Av Juan Pablo
+Ecotur,2025-06-15 20:00,2025-06-16 09:00,55.0,70.0,64,BUS CAMA,780,La Victoria,Cesar Vallejo
+Transtur Imperio,2025-06-15 23:00,2025-06-16 09:00,50.0,70.0,32,BUS CAMA,600,La Victoria,Terrapuerto Trujillo
+Latham,2025-06-15 08:20,2025-06-15 18:10,1.0,1.0,60,Estandar,590,Terminal Terrestre Plaza Norte,Terrapuerto Moche
+Turismo Titanic,2025-06-15 19:00,2025-06-16 04:45,50.0,70.0,60,SEMI CAMA,585,Terminal Marco Polo,Av La Marina
+Transportes Ejecutivo Express,2025-06-15 22:00,2025-06-16 07:00,45.0,45.0,6,EXPRESS,540,Terminal Terrestre Plaza Norte,Terrapuerto Trujillo
+Latham,2025-06-15 22:20,2025-06-16 08:10,56.0,90.0,57,Estandar,590,Terminal Terrestre Plaza Norte,Terrapuerto Moche
+Allinbus,2025-06-15 10:00,2025-06-15 21:00,45.0,75.0,57,BUS CAMA,660,La Victoria,Terrapuerto Trujillo
+Turismo Tacna Internacional,2025-06-15 18:30,2025-06-16 06:00,80.0,100.0,39,King Service,690,Terminal Atocongo,Terrapuerto Moche
+Turismo Tacna Internacional,2025-06-15 09:15,2025-06-15 19:15,80.0,100.0,35,King Service,600,La Victoria,Terrapuerto Moche
+ITTSABUS,2025-06-15 21:30,2025-06-16 07:30,140.0,140.0,2,Super Cama,600,La Victoria,Av Juan Pablo
+ITTSABUS,2025-06-15 22:10,2025-06-16 08:10,100.0,150.0,7,Super Cama,600,La Victoria,Av Juan Pablo
+ITTSABUS,2025-06-15 20:45,2025-06-16 06:45,140.0,140.0,1,Super Cama,600,La Victoria,Av Juan Pablo
+ITTSABUS,2025-06-15 20:30,2025-06-16 06:30,75.0,100.0,41,SEMI CAMA,600,La Victoria,Av Juan Pablo
+Turismo Cautivo,2025-06-15 20:00,2025-06-16 05:07,80.0,80.0,40,EJECUTIVO,547,La Victoria,Terrapuerto Trujillo
+Cruz del Norte,2025-06-15 21:30,2025-06-16 08:20,67.0,90.0,63,BUS CAMA,650,La Victoria,Terrapuerto Moche
+Cruz del Norte,2025-06-15 22:20,2025-06-16 08:20,67.0,90.0,63,BUS CAMA,600,Terminal Terrestre Plaza Norte,Terrapuerto Moche
+Allinbus,2025-06-15 20:45,2025-06-16 07:00,85.0,115.0,51,BUS CAMA,615,La Victoria,Terrapuerto Trujillo

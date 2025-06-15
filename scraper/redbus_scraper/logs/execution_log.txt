@@ -1,24 +1,23 @@
-2025-06-14 23:49:19,786 - INFO - 🟢 Logging iniciado correctamente.
-2025-06-14 23:49:19,786 - INFO - ====== WebDriver manager ======
-2025-06-14 23:49:20,444 - INFO - Get LATEST chromedriver version for google-chrome
-2025-06-14 23:49:20,519 - INFO - Get LATEST chromedriver version for google-chrome
-2025-06-14 23:49:20,579 - INFO - Driver [C:\Users\jhonj\.wdm\drivers\chromedriver\win64\137.0.7151.70\chromedriver-win32/chromedriver.exe] found in cache
-2025-06-14 23:49:21,566 - INFO - ✅ Driver de Chrome iniciado correctamente.
-2025-06-14 23:49:21,566 - INFO - 🌐 Abriendo redbus.pe...
-2025-06-14 23:49:24,016 - INFO - 📸 Captura guardada: c:\Users\jhonj\OneDrive\Desktop\proyecto\viajes-economicos\scraper\redbus_scraper\screenshots\01_homepage.png
-2025-06-14 23:49:24,016 - INFO - ⌨️ Esperando campo de entrada origen...
-2025-06-14 23:49:25,840 - INFO - 📸 Captura guardada: c:\Users\jhonj\OneDrive\Desktop\proyecto\viajes-economicos\scraper\redbus_scraper\screenshots\02_input_origen_lima.png
-2025-06-14 23:49:25,841 - INFO - 🔍 Buscando sugerencias para 'Lima (Todos)'...
-2025-06-14 23:49:26,988 - INFO - 📸 Captura guardada: c:\Users\jhonj\OneDrive\Desktop\proyecto\viajes-economicos\scraper\redbus_scraper\screenshots\debug_sugerencias_origen.png
-2025-06-14 23:49:27,006 - INFO - 🔸 Opción encontrada: Lima (Todos)
-2025-06-14 23:49:27,016 - INFO - ✅ Seleccionando opción: Lima (Todos)
-2025-06-14 23:49:27,221 - INFO - 📸 Captura guardada: c:\Users\jhonj\OneDrive\Desktop\proyecto\viajes-economicos\scraper\redbus_scraper\screenshots\02_origin_selected_lima_todos.png
-2025-06-14 23:49:27,221 - INFO - 🧭 Seleccionando destino: Trujillo...
-2025-06-14 23:49:28,311 - INFO - ✅ Seleccionando opción: Trujillo (Todos)
-2025-06-14 23:49:28,520 - INFO - 📸 Captura guardada: c:\Users\jhonj\OneDrive\Desktop\proyecto\viajes-economicos\scraper\redbus_scraper\screenshots\03_destination_selected_trujillo_todos.png
-2025-06-14 23:49:28,520 - INFO - 📅 Seleccionando fecha de ida: 15/06/2025...
-2025-06-14 23:49:29,832 - INFO - 📸 Captura guardada: c:\Users\jhonj\OneDrive\Desktop\proyecto\viajes-economicos\scraper\redbus_scraper\screenshots\04_date_selected.png
-2025-06-14 23:49:29,833 - INFO - 🔍 Haciendo clic en BUSCAR...
-2025-06-14 23:49:36,122 - INFO - 📸 Captura guardada: c:\Users\jhonj\OneDrive\Desktop\proyecto\viajes-economicos\scraper\redbus_scraper\screenshots\06_results_loaded.png
-2025-06-14 23:49:36,123 - INFO - 🎯 Fase 1 completada correctamente.
-2025-06-14 23:49:38,282 - INFO - 🔚 Driver cerrado. Fin del proceso.
+2025-06-15 00:19:15,334 - INFO - 🟢 Logging iniciado correctamente.
+2025-06-15 00:19:15,335 - INFO - ====== WebDriver manager ======
+2025-06-15 00:19:16,013 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-15 00:19:16,072 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-15 00:19:16,115 - INFO - Driver [C:\Users\jhonj\.wdm\drivers\chromedriver\win64\137.0.7151.70\chromedriver-win32/chromedriver.exe] found in cache
+2025-06-15 00:19:17,113 - INFO - ✅ Driver de Chrome iniciado correctamente.
+2025-06-15 00:19:17,113 - INFO - 🌐 Abriendo redbus.pe...
+2025-06-15 00:19:19,602 - INFO - 📸 Captura guardada: c:\Users\jhonj\OneDrive\Desktop\proyecto\viajes-economicos\scraper\redbus_scraper\screenshots\01_homepage.png
+2025-06-15 00:19:19,602 - INFO - ⌨️ Ingresando origen: Lima...
+2025-06-15 00:19:19,897 - INFO - 📸 Captura guardada: c:\Users\jhonj\OneDrive\Desktop\proyecto\viajes-economicos\scraper\redbus_scraper\screenshots\02_input_origen_lima.png
+2025-06-15 00:19:19,897 - INFO - 🔍 Esperando sugerencias para 'Lima (Todos)'...
+2025-06-15 00:19:20,442 - INFO - 🔸 Opción encontrada: Lima (Todos)
+2025-06-15 00:19:20,455 - INFO - ✅ Seleccionando opción: Lima (Todos)
+2025-06-15 00:19:20,669 - INFO - 📸 Captura guardada: c:\Users\jhonj\OneDrive\Desktop\proyecto\viajes-economicos\scraper\redbus_scraper\screenshots\02_origin_selected_lima_todos.png
+2025-06-15 00:19:20,669 - INFO - 🧭 Ingresando destino: Trujillo...
+2025-06-15 00:19:21,759 - INFO - ✅ Seleccionando opción: Trujillo (Todos)
+2025-06-15 00:19:21,984 - INFO - 📸 Captura guardada: c:\Users\jhonj\OneDrive\Desktop\proyecto\viajes-economicos\scraper\redbus_scraper\screenshots\03_destination_selected_trujillo_todos.png
+2025-06-15 00:19:21,984 - INFO - 📅 Seleccionando fecha de ida: 15/06/2025...
+2025-06-15 00:19:23,282 - INFO - 📸 Captura guardada: c:\Users\jhonj\OneDrive\Desktop\proyecto\viajes-economicos\scraper\redbus_scraper\screenshots\04_date_selected.png
+2025-06-15 00:19:23,282 - INFO - 🔍 Haciendo clic en BUSCAR...
+2025-06-15 00:19:28,576 - INFO - 📸 Captura guardada: c:\Users\jhonj\OneDrive\Desktop\proyecto\viajes-economicos\scraper\redbus_scraper\screenshots\06_results_loaded.png
+2025-06-15 00:19:28,577 - INFO - 🎯 Fase 1 completada correctamente.
+2025-06-15 00:19:30,742 - INFO - 🔚 Driver cerrado. Fin del proceso.
