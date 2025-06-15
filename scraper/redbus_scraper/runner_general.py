@@ -10,7 +10,6 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 from scraper.redbus_scraper.extractor import scrape_redbus
 
 # ========== CONFIGURACIÓN ==========
-
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
@@ -27,7 +26,6 @@ with open(city_ids_path, "r", encoding="utf-8") as f:
     city_ids = json.load(f)
 
 # ========== INPUT INTERACTIVO ==========
-
 print("\n🗺️  Ciudades disponibles:")
 for ciudad in city_ids:
     print("   -", ciudad)
@@ -46,7 +44,6 @@ fecha_inicio_str = input("📅 Fecha inicio (YYYY-MM-DD): ").strip()
 fecha_fin_str = input("📅 Fecha fin (YYYY-MM-DD): ").strip()
 
 # ========== VALIDACIÓN DE FECHAS ==========
-
 try:
     fecha_inicio = datetime.strptime(fecha_inicio_str, "%Y-%m-%d")
     fecha_fin = datetime.strptime(fecha_fin_str, "%Y-%m-%d")
@@ -67,8 +64,7 @@ if (fecha_fin - fecha_inicio).days + 1 > MAX_DIAS:
     logging.error(f"⚠️ Rango muy amplio. Máximo permitido: {MAX_DIAS} días.")
     sys.exit()
 
-# ========== DICCIONARIO DE MESES ESPAÑOL ==========
-
+# ========== DICCIONARIO DE MESES EN ESPAÑOL ==========
 meses_es = {
     1: "enero", 2: "febrero", 3: "marzo", 4: "abril",
     5: "mayo", 6: "junio", 7: "julio", 8: "agosto",
@@ -76,7 +72,6 @@ meses_es = {
 }
 
 # ========== LOOP DE SCRAPING ==========
-
 fechas = [(fecha_inicio + timedelta(days=i)).strftime("%d-%b-%Y")
           for i in range((fecha_fin - fecha_inicio).days + 1)]
 
@@ -116,5 +111,4 @@ for i, fecha_str in enumerate(fechas, start=1):
         fallos += 1
 
 # ========== RESUMEN FINAL ==========
-
 logging.info(f"✅ Scraping terminado | Éxitos: {exitos} | Fallos: {fallos}")

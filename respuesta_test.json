@@ -1,0 +1,14 @@
+{
+  "showOOPSAction": 1,
+  "parentSrcCityName": null,
+  "parentDstCityName": null,
+  "parentSrcCityId": 148,
+  "parentDstCityId": 124,
+  "oopsContent": null,
+  "avIn": null,
+  "SrcCountry": null,
+  "CallForOOPS": true,
+  "Code": "300.10",
+  "Message": "No routes available",
+  "DetailedMessage": "¡Ups! Algo salió mal. Por favor, vuélvalo a intentar"
+}
