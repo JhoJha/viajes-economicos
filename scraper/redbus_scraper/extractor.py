@@ -1,85 +1,80 @@
-import requests
+import os
 import json
+import time
+import random
 import logging
 from datetime import datetime
+import requests
+from scraper.redbus_scraper.config.config import HEADERS, COOKIES, BODY  # Asegúrate de que config.py esté en el mismo paquete
 
-# ========== CONFIGURAR LOGGING ==========
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
+def scrape_redbus(from_city_id, to_city_id, from_name, to_name, date_str, output_dir):
+    """
+    Realiza scraping a la API de RedBus y guarda el JSON crudo.
+    Incluye validaciones de fecha, manejo de errores y adaptabilidad a bloqueos.
+    """
 
-# ========== PARÁMETROS ==========
-from_city_id = 195105  # Lima (Todos)
-to_city_id = 195256    # Trujillo (Todos)
-date = '15-Jun-2025'
+    # Validar formato de fecha
+    try:
+        date_obj = datetime.strptime(date_str, "%d-%b-%Y")
+    except ValueError:
+        logging.error(f"❌ Fecha inválida: '{date_str}'. Usa formato 'DD-MMM-YYYY' (ej. 15-Jun-2025)")
+        return
 
-# ========== URL DE LA API ==========
-url = (
-    f"https://www.redbus.pe/search/SearchV4Results"
-    f"?fromCity={from_city_id}&toCity={to_city_id}"
-    f"&src=Lima%20(Todos)&dst=Trujillo%20(Todos)"
-    f"&DOJ={date}&sectionId=0&groupId=0"
-    f"&limit=0&offset=0&sort=0&sortOrder=0&meta=true&returnSearch=0"
-)
+    # Crear carpeta si no existe
+    os.makedirs(output_dir, exist_ok=True)
 
-# ========== HEADERS Y COOKIES ==========
-headers = {
-    "accept": "application/json, text/plain, */*",
-    "accept-language": "es-ES,es;q=0.9",
-    "content-type": "application/json",
-    "origin": "https://www.redbus.pe",
-    "referer": "https://www.redbus.pe/pasajes-de-bus/lima-a-trujillo",
-    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                  "AppleWebKit/537.36 (KHTML, like Gecko) "
-                  "Chrome/137.0.0.0 Safari/537.36",
-}
+    # Construir URL con parámetros
+    url = (
+        f"https://www.redbus.pe/search/SearchV4Results"
+        f"?fromCity={from_city_id}&toCity={to_city_id}"
+        f"&src={from_name.replace(' ', '%20')}&dst={to_name.replace(' ', '%20')}"
+        f"&DOJ={date_str}&sectionId=0&groupId=0"
+        f"&limit=0&offset=0&sort=0&sortOrder=0&meta=true&returnSearch=0"
+    )
 
-# Las cookies son largas, puedes copiar las que te pasé como string o extraerlas con Selenium si prefieres
-cookies = {
-    "country": "PER",
-    "currency": "PEN",
-    "language": "es",
-    "defaultCountry": "PER",
-    # Agrega aquí otras cookies clave como deviceSessionId, _ga, etc si fallara el request
-}
+    logging.info(f"🔍 Buscando: {from_name} → {to_name} | Fecha: {date_str}")
 
-# ========== BODY ==========
-body = {
-    "onlyShow": [],
-    "dt": [],
-    "SeaterType": [],
-    "AcType": [],
-    "travelsList": [],
-    "amtList": [],
-    "bpList": [],
-    "dpList": [],
-    "CampaignFilter": [],
-    "rtcBusTypeList": [],
-    "at": [],
-    "persuasionList": [],
-    "bpIdentifier": [],
-    "bcf": [],
-    "opBusTypeFilterList": []
-}
+    try:
+        response = requests.post(url, headers=HEADERS, cookies=COOKIES, json=BODY, timeout=15)
 
-# ========== EJECUCIÓN ==========
-logging.info("🔍 Enviando solicitud a la API interna de RedBus...")
+        # Manejo de bloqueos
+        if response.status_code == 429:
+            logging.warning("⚠️ Código 429 (Too Many Requests): Aumentando delay para evitar bloqueo.")
+            time.sleep(random.uniform(10, 20))
+            return
 
-response = requests.post(url, headers=headers, cookies=cookies, json=body)
+        if response.status_code == 403:
+            logging.error("⛔ Código 403 (Forbidden): IP posiblemente bloqueada.")
+            return
 
-if response.status_code == 200:
-    logging.info("✅ Respuesta recibida correctamente.")
-    
-    # Guardar respuesta
-    data = response.json()
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_path = f"data/api_response_{timestamp}.json"
+        response.raise_for_status()
+        data = response.json()
 
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+        # Validar contenido de resultados
+        results = data.get("onwardflights", [])
+        if not results:
+            logging.warning("⚠️ Respuesta sin viajes. Puede ser error silencioso o no hay buses.")
+        else:
+            logging.info(f"✅ {len(results)} resultados encontrados.")
 
-    logging.info(f"📁 Datos guardados en: {output_path}")
+        # Guardar archivo
+        fecha_formato = date_obj.strftime("%Y%m%d")
+        nombre_archivo = f"api_response_{fecha_formato}.json"
+        ruta_salida = os.path.join(output_dir, nombre_archivo)
 
-else:
-    logging.error(f"❌ Error en la solicitud. Código: {response.status_code}")
+        with open(ruta_salida, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+
+        logging.info(f"📁 Archivo guardado en: {ruta_salida}")
+
+    except requests.exceptions.Timeout:
+        logging.error("⏱️ Timeout: El servidor no respondió a tiempo.")
+    except requests.RequestException as e:
+        logging.error(f"❌ Error de red: {e}")
+    except Exception as e:
+        logging.error(f"❌ Error inesperado: {e}")
+
+    # Delay adaptativo entre llamadas
+    delay = random.uniform(5, 10)
+    logging.info(f"🕒 Esperando {delay:.2f} segundos antes de continuar...")
+    time.sleep(delay)
