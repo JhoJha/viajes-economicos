@@ -1,85 +1,127 @@
-# 🚌 RedBus Scraper – Fase 1
+# RedBus Scraper 
 
-Proyecto parte de **"Guía de Viajes Económicos desde Lima"**, donde se automatiza la búsqueda de pasajes en [redbus.pe](https://www.redbus.pe) utilizando **Selenium + Python**.
-
----
-
-## 📌 Objetivo de la Fase 1
-Automatizar el llenado del formulario en RedBus.pe para buscar pasajes desde **Lima (Todos)** hasta **Trujillo (Todos)** en una fecha determinada (15 de junio de 2025), simulando la interacción humana real:
-
-### Pasos automatizados:
-1. Iniciar WebDriver con configuración personalizada
-2. Abrir la web [https://www.redbus.pe](https://www.redbus.pe)
-3. Escribir y seleccionar:
-   - **Origen:** Lima (Todos)
-   - **Destino:** Trujillo (Todos)
-4. Elegir fecha: 15/06/2025
-5. Hacer clic en **Buscar**
-6. Capturar evidencias de cada paso (screenshots)
-7. Registrar logs detallados del proceso
+Este módulo forma parte del proyecto **Guía de Viajes Económicos desde Lima**. Su objetivo es automatizar el proceso de extracción de datos de pasajes de la web [RedBus.pe](https://www.redbus.pe) para realizar análisis comparativos de precios, horarios y servicios en rutas interprovinciales de Perú.
 
 ---
 
-## 📸 Evidencias
-Las siguientes capturas fueron tomadas durante la ejecución:
+##  Características principales
 
-| Paso | Captura |
-|------|---------|
-| HomePage cargada | `01_homepage.png` |
-| Entrada de "Lima" | `02_input_origen_lima.png` |
-| Selección de "Lima (Todos)" | `02_origin_selected_lima_todos.png` |
-| Selección de "Trujillo (Todos)" | `03_destination_selected_trujillo_todos.png` |
-| Fecha seleccionada | `04_date_selected.png` |
-| Resultados cargados | `06_results_loaded.png` |
+* Extracción directa desde la **API interna** de RedBus (sin scraping de HTML).
+* Manejo de headers, cookies y payload en archivo `config.py`.
+* Generación de carpetas automática por ciudad y mes.
+* Validación de formato de fechas, rango límite y bloqueos por exceso de peticiones (HTTP 429).
+* Evita duplicados: no vuelve a scrapear fechas que ya tienen un archivo guardado.
+* Guardado de resultados en formato JSON crudo.
+* Modularización completa: separación clara entre extracción, procesamiento y ejecución.
 
 ---
 
-## 🧠 Lógica técnica destacada
-- Uso de `WebDriverWait` con `expected_conditions` para evitar errores por carga lenta
-- XPath flexible y tolerante para capturar opciones tipo "Lima (Todos)"
-- Capturas automáticas para depuración y documentación
-- Logs automáticos con `logging` configurado a nivel profesional
-- Separación de rutas: `logs/`, `screenshots/`, `data/`
+##  Estructura de carpetas
 
----
-
-## ⚙️ Tecnologías
-- Python 3.13
-- Selenium 4.x
-- WebDriver Manager
-- VSCode
-- Git + GitHub
-
----
-
-## 🚀 Próximos pasos (Fase 2)
-- Extraer los datos de los resultados mostrados (precios, empresas, horarios)
-- Guardarlos en archivos CSV o en una base de datos SQLite
-- Manejar paginación y diferentes fechas
-
----
-
-## 📂 Estructura del scraper
 ```
-viajes-economicos/
-└── scraper/
-    └── redbus_scraper/
-        ├── main.py
-        ├── logs/
-        │   └── execution_log.txt
-        ├── screenshots/
-        │   ├── 01_homepage.png
-        │   ├── 02_input_origen_lima.png
-        │   ├── ...
-        └── data/   
+scraper/
+├── redbus_scraper/
+│   ├── config/
+│   │   ├── config.py          # Headers, cookies y body para requests POST
+│   │   └── city_ids.json      # Diccionario ciudad → ID de RedBus
+│   ├── data/                  # Carpeta base (no contiene los viajes)
+│   ├── driver/                # Recursos como chromedriver si se usara Selenium
+│   ├── logs/                  # Logs generados automáticamente (futuro)
+│   ├── screenshots/           # Capturas de Selenium en fase 1 (opcional)
+│   ├── extractor.py           # Función scrape_redbus() con validaciones robustas
+│   ├── procesador.py          # Procesamiento modular (JSON → CSV, consola, resumen, etc.)
+│   ├── main.py                # Fase 1: Navegación automatizada con Selenium
+│   ├── fase2_runner.py        # Fase 2: Ejecutar múltiples fechas de una ruta
+│   └── runner_general.py      # Versión interactiva completa: ciudades + fechas desde consola
 ```
 
 ---
 
-## 👨‍💻 Autor
-**Jhon**, estudiante de Ingeniería Estadística e Informática.
+## ⚙️ Código modularizado y funciones clave
+
+### 🔹 `scrape_redbus(...)` en `extractor.py`
+
+```python
+scrape_redbus(
+    from_city_id=195105,
+    to_city_id=195256,
+    from_name="Lima (Todos)",
+    to_name="Trujillo (Todos)",
+    date_str="15-Jun-2025",
+    output_dir=Path("data/redbus/Trujillo/junio")
+)
+```
+
+Esta función incluye:
+
+* Manejo de errores HTTP (429, 403)
+* Validación del formato de fecha
+* Salto automático si el archivo ya existe
+* Delay aleatorio entre peticiones
+
+### 🔹 `runner_general.py` (interactivo)
+
+* Solicita ciudad origen y destino
+* Solicita fechas en formato YYYY-MM-DD
+* Valida errores comunes
+* Ejecuta scraping en lote solo si es válido
 
 ---
 
-## 🌐 Licencia
-MIT – Libre para estudiar, modificar y mejorar 
+## ⚡ Uso rápido
+
+```bash
+python scraper/redbus_scraper/runner_general.py
+```
+
+### Ingresar por consola:
+
+* Ciudad origen (copiar desde city\_ids.json, ej: `Lima (Todos)`)
+* Ciudad destino (ej: `Trujillo (Todos)`)
+* Fecha inicio: `2025-07-01`
+* Fecha fin: `2025-07-31`
+
+El sistema creará automáticamente carpetas como:
+
+```
+data/redbus/Trujillo/julio/api_response_20250726.json
+```
+
+---
+
+##  Flujo de trabajo por fases
+
+| Fase   | Descripción                                                              |
+| ------ | ------------------------------------------------------------------------ |
+| Fase 1 | `main.py`: Prueba con Selenium para observar el comportamiento de RedBus |
+| Fase 2 | `fase2_runner.py`: Ejecutar múltiples fechas de una sola ruta            |
+| Fase 3 | `runner_general.py`: Ejecutar scraping para fechas y rutas completas     |
+| Fase 4 | `procesador.py`: Exportar resultados a consola, CSV o JSON simplificado  |
+
+---
+
+##  Requisitos
+
+Instala las dependencias necesarias desde el archivo `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+##  Pendientes / Siguientes pasos
+
+* Automatizar scraping para múltiples rutas en bucle
+* Validación de precios inusuales o caídas de precio
+* Persistencia en base de datos SQLite
+* Panel de visualización de precios históricos
+* Integración con otras fuentes: clima, hospedaje, etc.
+
+---
+
+##  Licencia
+
+Este proyecto es de uso académico y educativo. Todos los datos se extraen para fines de análisis no lucrativo.
+
+---
